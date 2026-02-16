@@ -22,7 +22,7 @@ A[4]= 20  A[7]= 3  A[2]= 8  A[0]= 2  A[1]= 6  A[9]= Error
 
 Clase de arreglos:
 
-En la clase pasada se utilizó la forma-1 en la que sde definia el arreglo directamente con elementos
+En la clase pasada se utilizó la forma-1 en la que se definia el arreglo directamente con elementos
            Ejemplo: int[] a = {7, 2, 6, 1, 0, 3};
 
 El tamaño del arreglo se obtiene con la palabra reservada "length"
@@ -39,6 +39,7 @@ Sumar todos los elementos del arreglo
     total += a[i]{
     }
     System.out.println("la suma de los elementos del arreglo a es: " + total);
+    }
 
 
 
