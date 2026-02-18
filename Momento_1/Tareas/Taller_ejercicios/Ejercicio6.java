@@ -2,12 +2,12 @@ import java.util.*;
 
 public class Ejercicio6 {
     public static void main(String[] args) {
-        // Arreglos con 5 posiciones
+        // se realizan arreglos de tamaño 5 para todos.
         double[] A = {1200000, 850000, 2300000, 950000, 1600000};
         double[] P = {10, 12, 8, 15, 10}; 
         double[] G = new double[5];
 
-        // Calculo de las ganancias
+        //Se realiza el calculo de las ganancias
         for (int i = 0; i < A.length; i++) {
             G[i] = A[i] * (P[i] / 100);
         }

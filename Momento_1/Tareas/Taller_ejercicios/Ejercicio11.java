@@ -7,7 +7,9 @@ public class Ejercicio11 {
         int[] ceros = new int[5];
         int[] pos = new int[5];
         
-        int cn = 0, cc = 0, cp = 0;
+        int cn = 0;
+        int cc = 0;
+        int cp = 0;
 
         for (int i = 0; i < A.length; i++) {
             if (A[i] < 0) {
