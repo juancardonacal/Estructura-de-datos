@@ -41,6 +41,11 @@ Sumar todos los elementos del arreglo
     System.out.println("la suma de los elementos del arreglo a es: " + total);
     }
 
+18/02/2026
 
+Semana 3:
 
+ESTRUCTURA DE DATOS CON OBJETOS
 
+Se crea un objeto llamado moto con las caracteristicas de una moto
+comun y corriente
