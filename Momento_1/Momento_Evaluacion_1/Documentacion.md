@@ -15,5 +15,7 @@ que ese encarguen de:
 
 8/03/2026 3:00am
 Las cosas se complican un poco, mañana tengo un compromiso y dejo este problema
-pendiente
-![alt text](errorpendiente.png)
+pendiente.
+
+<img width="832" height="349" alt="image" src="https://github.com/user-attachments/assets/9bbd7516-740b-4547-ae7d-93539b02be4d" />
+
