@@ -10,7 +10,7 @@ public class EjecucionPuerto {
         int opcion = 0;
         Random random = new Random();
         do {
-            System.out.println("\n--- LOGISTICA JH ---");
+            System.out.println("\n--- BIENVENIDO AL PUESTO DE LOGISTICA ---\n-- ¿Que opcion desea realizar? --\n");
             System.out.println("1. Registrar Buque\n2. Registrar Contenedor\n3. Peso Total\n4. Listar Origenes\n5. Salir");
             System.out.print("Seleccione: ");
             opcion = input.nextInt();
