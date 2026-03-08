@@ -5,10 +5,7 @@ en cuenta que en lo que a mi respecta, la aplicación debería tener submenús
 que ese encarguen de:
 
 - permitir que mas contenedores puedan ser ingresados de forma inmediata,
-  esto con el fin de agilizar el proceso registro de los contenedores, de manera
-  que al probar si ya no hay puestos suficientes al completar todo el arreglo
-  10x10, el mismo marque un mensaje que nos indique que dejo de haber espacio en
-  el terminal de contenedores.
+  esto con el fin de agilizar el proceso de registro de los contenedores.
   
 - administrar el espacio de los buques como estructuras existentes que de manera
   más realista interactuan con los contenedores y no solo son estructuras que llegan
