@@ -13,4 +13,9 @@ que ese encarguen de:
   más realista interactuan con los contenedores y no solo son estructuras que llegan
   a ocupar un espacio en el puerto.
 
+  8/03/2026 3:00am
+  Las cosas se complican un poco, mañana tengo un compromiso y dejo este problema
+  pendiente
+  ![alt text](image.png)
+
   
