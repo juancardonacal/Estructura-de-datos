@@ -5,6 +5,7 @@ public class GestionPuerto {
     Contenedores[][] terminalContenedores = new Contenedores[10][10];
     Buque[] muelleBuques = new Buque[10];
     Contenedores contenedores[] = new Contenedores[15];
+    Buque buqueEnMuelle;
 
     public void mostrarEsquema() {
         System.out.println("\n--- MAPA DE DISPONIBILIDAD (Fila 9 es el suelo) ---");
@@ -46,6 +47,11 @@ public class GestionPuerto {
                 return true;
         }
         return false;
+    }
+
+    public Buque getBuqueEnMuelle() {
+        return buqueEnMuelle;
+    
     }
 
     public double calcularPesoTotal() {

@@ -22,3 +22,6 @@ Ha estado un poco demorado debido a que hubo que tratar de que el codigo que se 
 
 <img width="872" height="547" alt="image" src="https://github.com/user-attachments/assets/2c713941-7e95-49d2-9763-96a3e62ed6a2" />
 
+Ya casí, no falta mucho, debo irme pero el error queda pendiente:
+
+![alt text](image.png)

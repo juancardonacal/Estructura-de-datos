@@ -40,10 +40,10 @@ public class EjecucionPuerto {
                         if (input.hasNextInt()) {
                         int valido = input.nextInt(); // Consumimos el número
 
-                        if (valido >= 1 && valido <= 3) {
+                        if (valido >= 1 && valido <= 4) {
                         opcion = valido; // El valor es totalmente válido
                         } else {
-                        System.out.println("Error: El número está fuera de rango (1-3).");
+                        System.out.println("Error: El número está fuera de rango (1-4).");
                         opcion = 0; // Opcional: un valor que obligue a repetir
                         }
                         } else {
@@ -94,16 +94,115 @@ public class EjecucionPuerto {
                             case 4:
                                 System.out.println("Volviendo al menú principal...");
                                 break;
+                                
 
                         } 
                     } while (opcion != 4);
+                    break;
                 
                         
 
                 case 2:
-                    gestion.mostrarEsquema();
-                    System.out.print("Columna (0-9): ");
-                    int columna = input.nextInt();
+                    do {
+                        System.out.println("\n--- MENÚ DE REGISTRO DE CONTENEDORES ---\n-- ¿Que opcion desea realizar? --\n");
+                        System.out.println("1. Registrar entrada de Contenedor\n2. Registrar salida de contenedor\n3. Volver al menú principal");
+                        System.out.print("Seleccione una opción: ");
+
+                        if (input.hasNextInt()) {
+                        int valido = input.nextInt(); // Consumimos el número
+
+                        if (valido >= 1 && valido <= 3) {
+                        opcion = valido; // El valor es totalmente válido
+                        } else {
+                        System.out.println("Error: El número está fuera de rango (1-3).");
+                        opcion = 0; // Opcional: un valor que obligue a repetir
+                        }
+                        } else {
+                            System.out.println("Error: ¡Debes ingresar un número entero!");
+                        input.next(); // LIMPIEZA: Sacamos la basura (letras) del buffer
+                        opcion = 0;
+                        }
+            
+
+                        switch (opcion) {
+                            case 1:
+                                // 1. Validar que exista un buque
+                                if (!gestion.hayBuquesEnMuelle()) {
+                                System.out.println("Error: No hay buques registrados para descargar.");
+                                break;
+                                }
+                                Buque buqueGestion = gestion.getBuqueEnMuelle(); // Obtenemos el buque en el muelle para
+                                                                                 // asignar los contenedores
+                                int disponibles = buqueGestion.contarContenedoresBordo(); // Cantidad de contenedores
+                                                                                          // que el buque tiene
+                                                                                          // disponibles para descargar
+                                if (disponibles == 0) {
+                                    System.out.println("El buque ya está completamente vacío.");
+                                    break;
+                                }
+
+                                // 2. Elegir cantidad a descargar
+                                System.out.println("El buque tiene " + disponibles + " contenedores.");
+                                System.out.print("¿Cuántos desea descargar?: ");
+                                int cantDescargar = input.nextInt(); // Aquí puedes usar la validación que hicimos antes
+
+                                if (cantDescargar > disponibles) {
+                                    cantDescargar = disponibles; // Ajustamos si pide más de los que hay
+                                }
+
+                                // 3. Ciclo de descarga uno por uno
+                                for (int i = 0; i < cantDescargar; i++) {
+                                    System.out.println("\nDescargando contenedor " + (i + 1) + " de " + cantDescargar);
+
+                                    // Sacamos el contenedor del barco
+                                    Contenedores contenedorExtraido = buqueGestion.descargarUnContenedor();
+
+                                    boolean ubicado = false;
+                                    while (!ubicado) {
+                                        System.out.print("Ingrese la columna de destino (0-9): ");
+                                        int colDestino = input.nextInt();
+
+                                        if (colDestino >= 0 && colDestino <= 9) {
+                                            // Aplicamos la gravedad en la terminal
+                                            if (gestion.registrarContenedor(colDestino, contenedorExtraido)) {
+                                                System.out.println("Contenedor ubicado en la columna " + colDestino);
+                                                ubicado = true; // Rompe el while y pasa al siguiente contenedor
+                                            } else {
+                                                System.out.println(
+                                                        "Error: La columna " + colDestino + " está llena. Elija otra.");
+                                            }
+                                        } else {
+                                            System.out.println("Columna inválida. Intente de nuevo.");
+                                        }
+                                    }
+                                }
+                                System.out.println("Operación de descarga finalizada.");
+                                break;
+
+                            case 2:
+                                System.out.print("Ingrese la columna del contenedor a registrar salida (0-9): ");
+                                int colSalida = input.nextInt();
+
+                                if (colSalida >= 0 && colSalida <= 9) {
+                                    if (gestion.registrarSalidaContenedor(colSalida)) {
+                                        System.out.println("Contenedor registrado para salida.");
+                                    } else {
+                                        System.out.println("No hay contenedores en esa columna.");
+                                    }
+                                } else {
+                                    System.out.println("Columna inválida. Intente de nuevo.");
+                                }
+                                break;
+                            case 3:
+                                System.out.println("Volviendo al menú principal...");
+                                break;
+
+                        } 
+                    } while (opcion != 3);
+                    
+
+
+                            
 
                     if (!gestion.hayBuquesEnMuelle()) {
                         System.out.println("No hay buques en el muelle, no hay contenedores para registrar.");
