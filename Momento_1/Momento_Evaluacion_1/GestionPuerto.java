@@ -1,6 +1,10 @@
+import java.util.Random;
+import java.util.Scanner;
+
 public class GestionPuerto {
     Contenedores[][] terminalContenedores = new Contenedores[10][10];
     Buque[] muelleBuques = new Buque[10];
+    Contenedores contenedores[] = new Contenedores[15];
 
     public void mostrarEsquema() {
         System.out.println("\n--- MAPA DE DISPONIBILIDAD (Fila 9 es el suelo) ---");
@@ -15,7 +19,8 @@ public class GestionPuerto {
 
     // Método de apilado: se llena de abajo hacia arriba
     public boolean registrarContenedor(int columna, Contenedores contenedores) {
-        if (columna < 0 || columna > 9) return false;
+        if (columna < 0 || columna > 9)
+            return false;
         for (int i = 9; i >= 0; i--) { // De abajo hacia arriba
             if (terminalContenedores[i][columna] == null) {
                 terminalContenedores[i][columna] = contenedores;
@@ -39,14 +44,16 @@ public class GestionPuerto {
         double total = 0;
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                if (terminalContenedores[i][j] != null) total += terminalContenedores[i][j].peso;
+                if (terminalContenedores[i][j] != null)
+                    total += terminalContenedores[i][j].peso;
             }
         }
         return total;
     }
 
     public boolean registrarSalidaContenedor(int columna) {
-        if (columna < 0 || columna > 9) return false;
+        if (columna < 0 || columna > 9)
+            return false;
         for (int i = 0; i < 10; i++) { // De arriba hacia abajo
             if (terminalContenedores[i][columna] != null) {
                 terminalContenedores[i][columna] = null; // Liberamos el espacio
@@ -65,4 +72,22 @@ public class GestionPuerto {
         }
         return false; // No se encontró el buque
     }
+
+    public void generarCargaAutomatica(int cantidad) {
+    Random random = new Random();
+    Scanner input = new Scanner(System.in);
+    String[] origenes = { "Colombia", "China", "USA", "Brasil", "España" };
+    
+
+    for(int i = 0; i < cantidad ; i++) {
+        int id = 1000 + random.nextInt(9000);
+        double peso = 30 + (20 * random.nextDouble());
+        String origen = origenes[random.nextInt(origenes.length)];
+
+        this.contenedores[i] = new Contenedores(id, peso, origen);
+    }
+
+    System.out.println("Se han generado "+ cantidad +" contenedores en el buque.");
+    }
+
 }

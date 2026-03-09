@@ -7,8 +7,8 @@ public class Buque {
     contenedores (1000 Aprox.), pero para efectos de este ejercicio, se limitará
     a 15 contenedores por buque.
     */ 
-    public Buque(String nombre) {
+    public Buque(String nombre, Contenedores[] contenedores) {
         this.nombre = nombre;
-        this.contenedores = new Contenedores[15]; // Cada buque puede llevar 1-15 contenedores
+        this.contenedores = contenedores; // Cada buque puede llevar 1-15 contenedores
     }
 }
