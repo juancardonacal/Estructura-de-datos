@@ -105,23 +105,10 @@ public class EjecucionPuerto {
                     System.out.print("Columna (0-9): ");
                     int columna = input.nextInt();
 
-                    // Generación aleatoria
-                    int id = random.nextInt(100); // IDs entre 0 y 99
-                    double peso = 20 + (30 - 20) * random.nextDouble(); // Peso entre 20 y 30 toneladas
-                    String[] origenes = { "Colombia", "China", "USA", "Brasil", "España" };
-                    String origen = origenes[random.nextInt(origenes.length)];
-
-                    Contenedores contenedores = new Contenedores(id, peso, origen);
-
-                    if (gestion.registrarContenedor(columna, contenedores)) {
-                        System.out.println("Ubicado con éxito: " + contenedores);
+                    if (!gestion.hayBuquesEnMuelle()) {
+                        System.out.println("No hay buques en el muelle, no hay contenedores para registrar.");
+                        break;
                     }
-                        
-                    else {
-                        System.out.println("No hay espacio en esa columna.");
-                    }
-                        
-                    break;
                 case 3:
                     System.out.println("Peso Total: " + gestion.calcularPesoTotal());
                     break;
