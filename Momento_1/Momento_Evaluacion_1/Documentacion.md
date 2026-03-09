@@ -18,5 +18,6 @@ Despues de tener que luchar contra el codigo para que corriera, se logro que la 
 
 Ha estado un poco demorado debido a que hubo que tratar de que el codigo que se encontraba funcional aun conservara la capacidad de funcionar sin fallos o errores pese a la modificacion del mismo, aun así, se logró elaborar el submenú de registro de buques con una funcion agregada propia en adicion a la descripcion de la guia, esto motivado por el hecho de que se podía hacer un modelado mas realista aun si se sacrificaba tiempo en la elaboracion total de la aplicacion (complemento a las competencias del ser y el hacer)
 
-![alt text](image.png)
+<img width="972" height="488" alt="image" src="https://github.com/user-attachments/assets/a8694260-195f-4eda-83de-415d2b50544a" />
+
 ![alt text](image.png)
