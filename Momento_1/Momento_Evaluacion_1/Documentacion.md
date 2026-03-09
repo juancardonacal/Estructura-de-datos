@@ -13,3 +13,6 @@ Las cosas se complican un poco, mañana tengo un compromiso y dejo este problema
 8/03/2026 6:30pm
 
 Nuevamente nos reubicamos con la elaboración del proyecto, entendiendo que el problema que presenta no es muy dificil de resolver.
+
+Despues de tener que luchar contra el codigo para que corriera, se logro que la logica del generador integrado dentro de la clase gestion de puerto pudiera acoplarse al main de ejecucion; Ahora, lo que sigue es realizar los respectivos submenús de registro de buques y contenedores.
+

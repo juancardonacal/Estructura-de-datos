@@ -32,28 +32,16 @@ public class EjecucionPuerto {
 
             switch (opcion) {
                 case 1:
+                    
                     System.out.print("Nombre del buque: ");
                     input.nextLine(); // Consumimos el salto de línea pendiente
                     String nombreBuque = input.nextLine();
                     int cantidad = 0;
 
-                    while (true) {
-                    System.out.print("ingrese del 1 al 15 el número de contenedores a generar: ");
-    
-                    if (input.hasNextInt()) {;
-                    cantidad = input.nextInt();
-                    // Validamos el rango después de validar que es un número
-                    if (cantidad >= 1 && cantidad <= 15) {
-                    break; // Salimos del bucle, todo está perfecto
-                    } else {
-                    System.out.println("Error: El número debe estar entre 1 y 15.");
-                    }
-                    } else {
-                    System.out.println("Error: No puedes ingresar letras.");
-                    input.next(); // Limpiamos la basura del teclado
-                }
-            }
+                    cantidad = gestion.validarCantidadContenedores(input); // Validamos la cantidad de contenedores a generar
+
                     gestion.generarCargaAutomatica(cantidad); // Generamos la carga automáticamente
+
                     Buque nuevobuque = new Buque(nombreBuque, gestion.contenedores); // Creamos el buque con el nombre y un número de contenedores inicial
                     if (gestion.registrarBuque(nuevobuque)) {
                         System.out.println("Buque registrado.");

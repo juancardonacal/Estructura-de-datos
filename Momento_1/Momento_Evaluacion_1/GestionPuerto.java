@@ -73,6 +73,26 @@ public class GestionPuerto {
         return false; // No se encontró el buque
     }
 
+    public int validarCantidadContenedores(Scanner input) {
+        int cantidad = 0;
+        while (true) {
+            System.out.print("ingrese del 1 al 15 el número de contenedores a generar: ");
+
+            if (input.hasNextInt()) {
+                cantidad = input.nextInt();
+                // Validamos el rango después de validar que es un número
+                if (cantidad >= 1 && cantidad <= 15) {
+                    break; // Salimos del bucle, todo está perfecto
+                } else {
+                    System.out.println("Error: El número debe estar entre 1 y 15.");
+                }
+            } else {
+                System.out.println("Error: No puedes ingresar letras.");
+                input.next(); // Limpiamos la basura del teclado
+            }
+        } return cantidad;
+    }
+
     public void generarCargaAutomatica(int cantidad) {
     Random random = new Random();
     Scanner input = new Scanner(System.in);
