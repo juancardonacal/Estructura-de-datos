@@ -40,6 +40,14 @@ public class GestionPuerto {
         return false;
     }
 
+    public boolean hayBuquesEnMuelle() {
+        for (int i = 0; i < muelleBuques.length; i++) {
+            if (muelleBuques[i] != null)
+                return true;
+        }
+        return false;
+    }
+
     public double calcularPesoTotal() {
         double total = 0;
         for (int i = 0; i < 10; i++) {

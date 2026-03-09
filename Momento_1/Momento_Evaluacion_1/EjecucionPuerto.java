@@ -32,23 +32,74 @@ public class EjecucionPuerto {
 
             switch (opcion) {
                 case 1:
-                    
-                    System.out.print("Nombre del buque: ");
-                    input.nextLine(); // Consumimos el salto de línea pendiente
-                    String nombreBuque = input.nextLine();
-                    int cantidad = 0;
+                    do {
+                        System.out.println("\n--- MENÚ DE REGISTRO DE BUQUES ---\n-- ¿Que opcion desea realizar? --\n");
+                        System.out.println("1. Registrar entrada de Buque\n2. Registrar salida de buque\n3. Listado de buques en el muelle\n4. Volver al menú principal");
+                        System.out.print("Seleccione una opción: ");
 
-                    cantidad = gestion.validarCantidadContenedores(input); // Validamos la cantidad de contenedores a generar
+                        if (input.hasNextInt()) {
+                        int valido = input.nextInt(); // Consumimos el número
 
-                    gestion.generarCargaAutomatica(cantidad); // Generamos la carga automáticamente
+                        if (valido >= 1 && valido <= 3) {
+                        opcion = valido; // El valor es totalmente válido
+                        } else {
+                        System.out.println("Error: El número está fuera de rango (1-3).");
+                        opcion = 0; // Opcional: un valor que obligue a repetir
+                        }
+                        } else {
+                            System.out.println("Error: ¡Debes ingresar un número entero!");
+                        input.next(); // LIMPIEZA: Sacamos la basura (letras) del buffer
+                        opcion = 0;
+                        }
+            
 
-                    Buque nuevobuque = new Buque(nombreBuque, gestion.contenedores); // Creamos el buque con el nombre y un número de contenedores inicial
-                    if (gestion.registrarBuque(nuevobuque)) {
-                        System.out.println("Buque registrado.");
-                    } else {
-                        System.out.println("Muelle lleno.");
-                    }
-                    break;
+                        switch (opcion) {
+                            case 1:
+                                System.out.print("Nombre del buque: ");
+                                input.nextLine(); // Consumimos el salto de línea pendiente
+                                String nombreBuque = input.nextLine();
+                                int cantidad = 0;
+
+                                cantidad = gestion.validarCantidadContenedores(input); // Validamos la cantidad de contenedores a generar
+
+                                gestion.generarCargaAutomatica(cantidad); // Generamos la carga automáticamente
+
+                                Buque nuevobuque = new Buque(nombreBuque, gestion.contenedores); // Creamos el buque con el nombre y un número de contenedores inicial
+                                if (gestion.registrarBuque(nuevobuque)) {
+                                System.out.println("Buque registrado.");
+                                } else {
+                                    System.out.println("Muelle lleno.");
+                                }
+                                break;
+
+                            case 2:
+                                System.out.print("Nombre del buque a registrar salida: ");
+                                input.nextLine(); // Consumimos el salto de línea pendiente
+                                String nombreSalida = input.nextLine();
+                                if (gestion.registrarSalidaBuque(nombreSalida)) {
+                                    System.out.println("Buque registrado para salida.");
+                                } else {
+                                    System.out.println("Buque no encontrado.");
+                                }
+                                break;
+
+                            case 3:
+                                System.out.println("--- Listado de Buques en el Muelle ---");
+                                for (int i = 0; i < 10; i++) {
+                                    if (gestion.muelleBuques[i] != null)
+                                        System.out.println("Posicion ["+i+"] -> " + gestion.muelleBuques[i].nombre);
+                                }
+                                break;
+
+                            case 4:
+                                System.out.println("Volviendo al menú principal...");
+                                break;
+
+                        } 
+                    } while (opcion != 4);
+                
+                        
+
                 case 2:
                     gestion.mostrarEsquema();
                     System.out.print("Columna (0-9): ");
@@ -85,5 +136,11 @@ public class EjecucionPuerto {
                     break;
             }
         } while (opcion != 5);
+    
+
+    
+    input.close();
+
     }
+
 }
