@@ -11,7 +11,7 @@ public class EjecucionPuerto {
         Random random = new Random();
         do {
             System.out.println("\n--- BIENVENIDO AL PUESTO DE LOGISTICA ---\n-- ¿Que opcion desea realizar? --\n");
-            System.out.println("1. Registrar Buque\n2. Registrar Contenedor\n3. Peso Total\n4. Listar Origenes\n5. Salir");
+            System.out.println("1. Acceder al menú de Registro de Buques.\n2. Acceder al menú de Registro de contenedores.\n3. Peso Total\n4. Listar Origenes\n5. Salir");
             System.out.print("Seleccione una opción: ");
 
             if (input.hasNextInt()) {
@@ -105,16 +105,16 @@ public class EjecucionPuerto {
                 case 2:
                     do {
                         System.out.println("\n--- MENÚ DE REGISTRO DE CONTENEDORES ---\n-- ¿Que opcion desea realizar? --\n");
-                        System.out.println("1. Registrar entrada de Contenedor\n2. Registrar salida de contenedor\n3. Volver al menú principal");
+                        System.out.println("1. Registrar entrada de Contenedor\n2. Registrar salida de contenedor\n3. Mostrar Esquema de la terminal\n4. Volver al menú principal");
                         System.out.print("Seleccione una opción: ");
 
                         if (input.hasNextInt()) {
                         int valido = input.nextInt(); // Consumimos el número
 
-                        if (valido >= 1 && valido <= 3) {
+                        if (valido >= 1 && valido <= 4) {
                         opcion = valido; // El valor es totalmente válido
                         } else {
-                        System.out.println("Error: El número está fuera de rango (1-3).");
+                        System.out.println("Error: El número está fuera de rango (1-4).");
                         opcion = 0; // Opcional: un valor que obligue a repetir
                         }
                         } else {
@@ -212,19 +212,24 @@ public class EjecucionPuerto {
                                 }
                                 break;
                             case 3:
+                                System.out.println("--- Esquema de la Terminal ---");
+                                gestion.mostrarEsquema();
+                                break;
+
+                            case 4:
                                 System.out.println("Volviendo al menú principal...");
                                 break;
 
                         } 
-                    } while (opcion != 3);
+                    } while (opcion != 4);
+                    break;
                     
-                    if (!gestion.hayBuquesEnMuelle()) {
-                        System.out.println("No hay buques en el muelle, no hay contenedores para registrar.");
-                        break;
-                    }
+                    
+
                 case 3:
                     System.out.println("Peso Total: " + gestion.calcularPesoTotal());
                     break;
+
                 case 4:
                     System.out.println("--- Listado de Origenes ---");
                     for (int i = 0; i < 10; i++) {
