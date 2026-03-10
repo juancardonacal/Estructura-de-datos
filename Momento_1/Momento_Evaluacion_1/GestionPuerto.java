@@ -1,12 +1,15 @@
 import java.util.Random;
 import java.util.Scanner;
 
+//Esta es la logica que va a mover los engranajes del sistema.
 public class GestionPuerto {
     Contenedores[][] terminalContenedores = new Contenedores[10][10];
     Buque[] muelleBuques = new Buque[10];
     Contenedores contenedores[] = new Contenedores[15];
     Buque buqueEnMuelle;
 
+    /* Mapa que itera sobre las posiciones de la matriz con el fin de validar
+    de forma visual los puestos que están libres[ ] y los que están ocupados[x] */
     public void mostrarEsquema() {
         System.out.println("\n--- MAPA DE DISPONIBILIDAD (Fila 9 es el suelo) ---");
         for (int i = 0; i < 10; i++) {
@@ -40,7 +43,7 @@ public class GestionPuerto {
         }
         return false;
     }
-
+    // Metodo encargado de validar la existencia de buques en el muelle.
     public boolean hayBuquesEnMuelle() {
         for (int i = 0; i < muelleBuques.length; i++) {
             if (muelleBuques[i] != null)
@@ -48,12 +51,12 @@ public class GestionPuerto {
         }
         return false;
     }
-
+    // Honestamente no recuerdo para que hice este metodo, pero lo dejo por si acaso.
     public Buque getBuqueEnMuelle() {
         return buqueEnMuelle;
     
     }
-
+    // Metodo que itera sobre la matriz de la terminal y suma el peso de cada contenedor, retornando el total.
     public double calcularPesoTotal() {
         double total = 0;
         for (int i = 0; i < 10; i++) {
@@ -64,7 +67,7 @@ public class GestionPuerto {
         }
         return total;
     }
-
+    // Es casi el mismo metodo de registro, solo que de arriba hacia abajo y liberando el espacio en lugar de ocuparlo.
     public boolean registrarSalidaContenedor(int columna) {
         if (columna < 0 || columna > 9)
             return false;
@@ -76,7 +79,7 @@ public class GestionPuerto {
         }
         return false; // No se encontró contenedor en esa columna
     }
-
+    // Aplica similar que el metodo anterior pero con el array de buques (Sin mecanica de "gravedad").
     public boolean registrarSalidaBuque(String nombre) {
         for (int i = 0; i < 10; i++) {
             if (muelleBuques[i] != null && muelleBuques[i].nombre.equals(nombre)) {
@@ -86,7 +89,7 @@ public class GestionPuerto {
         }
         return false; // No se encontró el buque
     }
-
+    // Metodo que valida que el usuario ingrese un numero entero entre 1 y 15, con manejo de errores.
     public int validarCantidadContenedores(Scanner input) {
         int cantidad = 0;
         while (true) {
@@ -106,7 +109,7 @@ public class GestionPuerto {
             }
         } return cantidad;
     }
-
+    // El metodo crucial para generar grandes cargas en poco tiempo, con origenes y pesos aleatorios.
     public void generarCargaAutomatica(int cantidad) {
     Random random = new Random();
     Scanner input = new Scanner(System.in);

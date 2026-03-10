@@ -14,19 +14,22 @@ public class EjecucionPuerto {
             System.out.println("1. Acceder al menú de Registro de Buques.\n2. Acceder al menú de Registro de contenedores.\n3. Peso Total\n4. Listar Origenes\n5. Salir");
             System.out.print("Seleccione una opción: ");
 
+            /* Validamos la entrada del usuario mediante condicionales,
+            de esta manera el codigo queda mas robusto*/
             if (input.hasNextInt()) {
-                int valido = input.nextInt(); // Consumimos el número
+                int valido = input.nextInt();//Pedimos el número al usuario.
 
                 if (valido >= 1 && valido <= 5) {
-                    opcion = valido; // El valor es totalmente válido
+                    opcion = valido; 
                 } else {
                     System.out.println("Error: El número está fuera de rango (1-5).");
-                    opcion = 0; // Opcional: un valor que obligue a repetir
+                    opcion = 0;// Y si se equivoca, le damos un valor que obligue a repetir el ciclo.
                 }
             } else {
                 System.out.println("Error: ¡Debes ingresar un número entero!");
-                input.next(); // LIMPIEZA: Sacamos la basura (letras) del buffer
+                input.next();//Ademas de limpiar el buffer (memoria temporal de entrada)
                 opcion = 0;
+                // A partir de aquí, todos los menús tendrán este tipo de validación.
             }
             
 
@@ -38,17 +41,17 @@ public class EjecucionPuerto {
                         System.out.print("Seleccione una opción: ");
 
                         if (input.hasNextInt()) {
-                        int valido = input.nextInt(); // Consumimos el número
+                        int valido = input.nextInt();
 
                         if (valido >= 1 && valido <= 4) {
-                        opcion = valido; // El valor es totalmente válido
+                        opcion = valido;  
                         } else {
                         System.out.println("Error: El número está fuera de rango (1-4).");
-                        opcion = 0; // Opcional: un valor que obligue a repetir
+                        opcion = 0; 
                         }
                         } else {
                             System.out.println("Error: ¡Debes ingresar un número entero!");
-                        input.next(); // LIMPIEZA: Sacamos la basura (letras) del buffer
+                        input.next();
                         opcion = 0;
                         }
             
@@ -73,6 +76,9 @@ public class EjecucionPuerto {
                                 break;
 
                             case 2:
+                                /* Esta es la operacion inversa al registro de entrada solo
+                                que menos sofisticada, de manera que resive el nombre del buque
+                                y lo registra para salida (Libera su espacio en el array) */
                                 System.out.print("Nombre del buque a registrar salida: ");
                                 input.nextLine(); // Consumimos el salto de línea pendiente
                                 String nombreSalida = input.nextLine();
@@ -126,7 +132,11 @@ public class EjecucionPuerto {
 
                         switch (opcion) {
                             case 1:
-                                // 1. Validar que exista un buque
+                                /*Con este menú interactuamos de manera directa con el buque, evidenciando
+                                el correcto modelado de los objetos mediante una abstraccion mas precisa
+                                de la realidad y un manejo de los datos eficiente (En mi opinion)*/
+
+                                // Validamos que exista un buque
                                 if (!gestion.hayBuquesEnMuelle()) {
                                 System.out.println("Error: No hay buques registrados para descargar.");
                                 break;
@@ -167,7 +177,7 @@ public class EjecucionPuerto {
                                 }
 
 
-                                // 3. Ciclo de descarga uno por uno
+                                // Ciclo de descarga uno por uno en el esquema de la terminal
                                 for (int i = 0; i < cantidadDescargar; i++) {
                                     System.out.println("\nDescargando contenedor " + (i + 1) + " de " + cantidadDescargar);
 
@@ -181,7 +191,7 @@ public class EjecucionPuerto {
                                         int columnaDestino = input.nextInt();
 
                                         if (columnaDestino >= 0 && columnaDestino <= 9) {
-                                            // Aplicamos la gravedad en la terminal
+                                            // Aplicamos la lógica de registro en la terminal
                                             if (gestion.registrarContenedor(columnaDestino, contenedorExtraido)) {
                                                 System.out.println("Contenedor ubicado en la columna " + columnaDestino);
                                                 ubicado = true; // Rompe el while y pasa al siguiente contenedor
@@ -198,6 +208,9 @@ public class EjecucionPuerto {
                                 break;
 
                             case 2:
+                                /* Lo mismo que con el otro, libera un espacio en la matriz,
+                                con la diferencia de que ha este le aplica la logica organizacional
+                                de la terminal de contenedores. */
                                 System.out.print("Ingrese la columna del contenedor a registrar salida (0-9): ");
                                 int columnaSalida = input.nextInt();
 
@@ -227,10 +240,13 @@ public class EjecucionPuerto {
                     
 
                 case 3:
+                    /* no hay mucho que explicar, es la sumatoria del atributo peso de cada
+                    contenedor que se encuentra en la terminal */
                     System.out.println("Peso Total: " + gestion.calcularPesoTotal());
                     break;
 
                 case 4:
+                    // Listado sencillo que recorre la terminal de contenedores.
                     System.out.println("--- Listado de Origenes ---");
                     for (int i = 0; i < 10; i++) {
                         for (int j = 0; j < 10; j++) {
