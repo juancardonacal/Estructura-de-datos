@@ -147,13 +147,36 @@ public class EjecucionPuerto {
                                     if (gestion.muelleBuques[i] != null)
                                         System.out.println("Posicion ["+i+"] -> " + gestion.muelleBuques[i].nombre);
                                 }
+
+                                int posicionBuque;
                                 // Pedimos al usuario que elija un buque por su posición
-                                System.out.print("Ingrese la posición del buque a descargar (0-9): ");
-                                int posicionBuque = input.nextInt();
-                                if (posicionBuque < 0 || posicionBuque > 9 || gestion.muelleBuques[posicionBuque] == null) {
-                                    System.out.println("Posición inválida o no hay buque en esa posición.");
-                                    break;
+                                while (true) {
+                                    System.out.print("Ingrese la posición del buque a descargar (0-9): ");
+
+                                    //En este caso del while depende que el programa funcione sin intrrupciones.
+                                    if (input.hasNextInt()) {
+                                        posicionBuque = input.nextInt();
+
+                                        // Validamos que la posicion sea correcta y que haya un buque en esa posición.
+                                        if (posicionBuque >= 0 && posicionBuque <= 9) {
+                                            if (gestion.muelleBuques[posicionBuque] != null) {
+                                                break;
+                                            } else {
+                                                System.out.println(
+                                                        "Error: No hay ningún buque en la posición " + posicionBuque);
+                                                // No hacemos break, vuelve a preguntar
+                                            }
+                                        } else {
+                                            System.out.println("Error: La posición debe estar entre 0 y 9.");
+                                        }
+                                    } else {
+                                        // Validamos que el usuario no le ingrese letras o simbolos, y limpiamos el buffer.
+                                        System.out
+                                                .println("Error: Entrada inválida. No se permiten letras o símbolos.");
+                                        input.next();
+                                    }
                                 }
+
                                 // Obtenemos el buque seleccionado
                                 Buque buqueGestion = gestion.muelleBuques[posicionBuque];
 
