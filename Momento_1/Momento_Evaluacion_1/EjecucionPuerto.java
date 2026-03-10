@@ -131,11 +131,25 @@ public class EjecucionPuerto {
                                 System.out.println("Error: No hay buques registrados para descargar.");
                                 break;
                                 }
-                                Buque buqueGestion = gestion.getBuqueEnMuelle(); // Obtenemos el buque en el muelle para
-                                                                                 // asignar los contenedores
-                                int disponibles = buqueGestion.contarContenedoresBordo(); // Cantidad de contenedores
-                                                                                          // que el buque tiene
-                                                                                          // disponibles para descargar
+                                // mostramos una lista de los buques para elegir
+                                System.out.println("--- Buques disponibles en el muelle ---");
+                                for (int i = 0; i < 10; i++) {
+                                    if (gestion.muelleBuques[i] != null)
+                                        System.out.println("Posicion ["+i+"] -> " + gestion.muelleBuques[i].nombre);
+                                }
+                                // Pedimos al usuario que elija un buque por su posición
+                                System.out.print("Ingrese la posición del buque a descargar (0-9): ");
+                                int posicionBuque = input.nextInt();
+                                if (posicionBuque < 0 || posicionBuque > 9 || gestion.muelleBuques[posicionBuque] == null) {
+                                    System.out.println("Posición inválida o no hay buque en esa posición.");
+                                    break;
+                                }
+                                // Obtenemos el buque seleccionado
+                                Buque buqueGestion = gestion.muelleBuques[posicionBuque];
+
+                                // disponibles define la cantidad de contenedores disponibles para descargar
+                                int disponibles = buqueGestion.contarContenedoresBordo();
+
                                 if (disponibles == 0) {
                                     System.out.println("El buque ya está completamente vacío.");
                                     break;
@@ -147,8 +161,11 @@ public class EjecucionPuerto {
                                 int cantDescargar = input.nextInt(); // Aquí puedes usar la validación que hicimos antes
 
                                 if (cantDescargar > disponibles) {
+                                    System.out.println("No hay suficientes contenedores para descargar.");
+                                    System.out.println("Se descargarán los " + disponibles + " contenedores disponibles.");
                                     cantDescargar = disponibles; // Ajustamos si pide más de los que hay
                                 }
+
 
                                 // 3. Ciclo de descarga uno por uno
                                 for (int i = 0; i < cantDescargar; i++) {
@@ -159,6 +176,7 @@ public class EjecucionPuerto {
 
                                     boolean ubicado = false;
                                     while (!ubicado) {
+                                        gestion.mostrarEsquema(); // Mostramos la terminal para que el usuario vea dónde puede colocar el contenedor
                                         System.out.print("Ingrese la columna de destino (0-9): ");
                                         int colDestino = input.nextInt();
 

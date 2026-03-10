@@ -25,3 +25,4 @@ Ha estado un poco demorado debido a que hubo que tratar de que el codigo que se 
 Ya casí, no falta mucho, debo irme pero el error queda pendiente:
 
 ![alt text](image.png)
+
