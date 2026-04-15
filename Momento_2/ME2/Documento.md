@@ -1,4 +1,3 @@
-1. El Registro (Los Arreglos)
 Los arreglos generan un registro basado en que los contenedores son objetos que cuentan con un Id peso y una reswpectiva prioridad, de manera que se pueda cumplir con las exigencias del codigo.
 
 Luego se toma los contenedores para ponerlos en una matris de dos dimensiones encargfadads der organixzarlos y ubicarlos en una determinada posicion, si no hay espacios en la matriz manda el aviso.
